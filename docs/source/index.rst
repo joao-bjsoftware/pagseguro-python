@@ -22,7 +22,7 @@ Instalação
 
   Ou você pode acessar os fontes através do GitHub em::
   
-    https://github.com/ricardosasilva/py-pagseguro/
+    https://github.com/ricardosasilva/pagseguro-python
 
 
 
