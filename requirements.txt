@@ -1,7 +1,8 @@
-voluptuous==0.8.3
-requests==2.0.1
-xmltodict==0.8.3
-python-dateutil==2.2
-nose==1.3.0
-flake8==2.1.0
-Sphinx==1.2b3
+voluptuous>=0.8.3
+requests>=2.0.1
+xmltodict>=0.8.3
+python-dateutil>=2.2
+Sphinx>=1.2b3
+flake8=>=2.1.0
+nose>=1.3.0
+coveralls==0.3
