@@ -19,3 +19,7 @@
 $ pip install pagseguro-python
 
 ```
+
+## Documentação
+
+[http://pagseguro-python.readthedocs.org](http://pagseguro-python.readthedocs.org/en/latest/)
