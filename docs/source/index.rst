@@ -8,13 +8,13 @@ Bem-vindo à documentação do PagSeguro-Python
 
 
 O que é
-=======
+-------
 
  Uma biblioteca Python para acesso à API versão 2.0 do PagSeguro. 
 
 
 Instalação
-==========
+----------
 
   Utilize o pip::
 
@@ -27,7 +27,7 @@ Instalação
 
 
 Guia rápido 
-===========
+-----------
 
   Para os impacientes:
 
@@ -42,7 +42,7 @@ Guia rápido
 
 
 Indices e Tabelas
-=================
+-----------------
 
 * :ref:`genindex`
 * :ref:`modindex`
