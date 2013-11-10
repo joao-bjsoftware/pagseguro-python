@@ -1,0 +1,4 @@
+pagseguro-python
+================
+
+PagSeguro-Python
