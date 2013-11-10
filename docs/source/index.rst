@@ -3,8 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Bem-vindo à documentação do PagSeguro-Python
-============================================
+==========================================
+Documentação do PagSeguro-Python |version|
+==========================================
 
 
 O que é
@@ -29,7 +30,7 @@ Instalação
 Guia rápido 
 -----------
 
-  Para os impacientes:
+    Para os impacientes:
 
     >>> from py_pagseguro import Payment
     >>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
