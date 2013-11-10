@@ -1,0 +1,11 @@
+[run]
+branch = True
+source = pagseguro
+include = pagseguro/*
+omit = pagseguro/tests/*
+
+[report]
+show_missing = True
+
+[html]
+title = Coverage Report for PagSeguro-Python
