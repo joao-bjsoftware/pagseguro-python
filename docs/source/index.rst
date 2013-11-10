@@ -18,7 +18,7 @@ Instalação
 
   Utilize o pip::
 
-    $ pip install py-pagseguro
+    $ pip install pagseguro-python
 
   Ou você pode acessar os fontes através do GitHub em::
   
