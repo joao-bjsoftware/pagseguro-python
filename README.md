@@ -1,6 +1,10 @@
 # PagSeguro-Python
 
 
+[![Build Status](https://api.travis-ci.org/ricardosasilva/pagseguro-python.png)](https://travis-ci.org/ricardosasilva/pagseguro-python)
+
+
+
 ## Quick Start
 
 ```
