@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 setup(
     name='pagseguro-python',
     version='0.9',
-    description='Uma biblioteca para a API do PagSeguro versão 2.0',
+    description='PagSeguro API v.2 client library ',
     author='Ricardo Silva',
     author_email='rsas79@gmail.com',
     url='https://github.com/ricardosasilva/pagseguro-python',
