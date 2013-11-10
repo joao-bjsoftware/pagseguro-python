@@ -1,8 +1,7 @@
 # PagSeguro-Python
 
 
-[![Build Status](https://api.travis-ci.org/ricardosasilva/pagseguro-python.png)](https://travis-ci.org/ricardosasilva/pagseguro-python)
-
+[![Build Status](https://api.travis-ci.org/ricardosasilva/pagseguro-python.png)](https://travis-ci.org/ricardosasilva/pagseguro-python) [![Coverage Status](https://coveralls.io/repos/ricardosasilva/pagseguro-python/badge.png?branch=master)](https://coveralls.io/r/ricardosasilva/pagseguro-python?branch=master)
 
 
 ## Quick Start
@@ -20,3 +19,7 @@
 $ pip install pagseguro-python
 
 ```
+
+## Documentação
+
+[http://pagseguro-python.readthedocs.org](http://pagseguro-python.readthedocs.org/en/latest/)
