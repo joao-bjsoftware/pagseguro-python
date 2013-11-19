@@ -7,8 +7,10 @@ Created on Nov 6, 2013
 from pagseguro.api.base_payment import BasePaymentRequest
 from pagseguro.api.v2 import settings
 from pagseguro.api.v2.objects.checkout import Checkout
+from pagseguro.api.v2.objects.document import Document
 from pagseguro.api.v2.objects.item import Item
 from pagseguro.api.v2.objects.payment_request import PaymentRequest
+from pagseguro.api.v2.objects.sender import Sender
 from pagseguro.exceptions import PagSeguroApiException, \
     PagSeguroPaymentException
 from xml.etree import ElementTree
@@ -24,9 +26,27 @@ class Payment(BasePaymentRequest):
     Classe que implementa a requisição à API do PagSeguro versão 2
     '''
 
-    def __init__(self, email, token):
+    def __init__(self,
+                 email,
+                 token,
+                 receiver_email=None,
+                 currency='BRL',
+                 reference=None,
+                 extra_amount=None,
+                 url_redirect=None,
+                 notification_url=None,
+                 max_uses=None,
+                 max_age=None):
         self.payment_request = PaymentRequest(email=email, token=token)
         self.payment_request.checkout = Checkout()
+        self.payment_request.checkout.receiver_email = receiver_email
+        self.payment_request.checkout.currency = currency
+        self.payment_request.checkout.reference = reference
+        self.payment_request.checkout.extra_amount = extra_amount
+        self.payment_request.checkout.url_redirect = url_redirect
+        self.payment_request.checkout.notification_url = notification_url
+        self.payment_request.checkout.max_uses = max_uses
+        self.payment_request.checkout.max_age = max_age
         self.response = None
 
     def add_item(self, item_id, description, amount, quantity, shipping_cost=None, weight=None):
@@ -43,6 +63,13 @@ class Payment(BasePaymentRequest):
             self.payment_request.checkout.items = []
 
         self.payment_request.checkout.items.append(item)
+
+    def set_client(self, name=None, email=None, phone_area_code=None, phone_number=None, cpf_number=None, born_date=None):
+        document = Document(value=cpf_number) # Como na versão 2 da API só é permitido CPF e uma pessoa tem no máximo 1 CPF não será tratado como lista 
+        self.checkout.sender = Sender(name=name, email=email, phone_area_code=phone_area_code, phone_number=phone_number, documents=[document,], born_date=born_date) 
+
+    def set_shipping(self, shipping_type=None, cost=None, street=None, address_number=None, complement=None, district=None, postal_code=None, city=None, state=None):
+        pass
 
     def _process_response_xml(self, response_xml):
         '''
@@ -72,13 +99,11 @@ class Payment(BasePaymentRequest):
                 xml_date = xml.find('date').text
                 result['date'] = dateutil.parser.parse(xml_date)
             except:
-                logger.exception(u'O campo date não foi encontrado ou é invalido' +
-                                 ' O xml de resposta foi: %s' % response_xml)
+                logger.exception(u'O campo date não foi encontrado ou é invalido')
                 result['date'] = None
         else:
             raise PagSeguroPaymentException(
-                u'Erro ao processar resposta do pagamento: tag "checkout" nao' +
-                'encontrada no xml de resposta. XML=%s' % response_xml)
+                u'Erro ao processar resposta do pagamento: tag "checkout" nao encontrada no xml de resposta')
         return result
 
     def payment_url(self):

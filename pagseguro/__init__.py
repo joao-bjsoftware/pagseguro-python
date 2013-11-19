@@ -26,23 +26,26 @@ class Payment(object):
     def __init__(self, email, token, version=2):
         self._payment = self._payment_factory(email, token, version)
 
-    def add_item(self,
-                 item_id,
-                 description,
-                 amount,
-                 quantity,
-                 shipping_cost=None,
-                 weight=None):
+    def add_item(self, *args, **kwargs):
         '''
         Método proxy para a classe que implementa o método add_item na
         versão da API escolhida
         '''
-        return self._payment.add_item(item_id,
-                                      description,
-                                      amount,
-                                      quantity,
-                                      shipping_cost,
-                                      weight)
+        return self._payment.add_item(*args, **kwargs)
+
+    def set_client(self, *args, **kwargs):
+        '''
+        Método proxy para a classe que implementa o método set_client na
+        versão da API escolhida
+        '''
+        return self._payment.set_client(*args, **kwargs)
+
+    def set_shipping(self, *args, **kwargs):
+        '''
+        Método proxy para a classe que implementa o método set_shipping na
+        versão da API escolhida
+        '''
+        return self._payment.set_shipping(*args, **kwargs)
 
     def request(self):
         ''' Método proxy para a classe que implementa o método request na

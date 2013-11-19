@@ -56,10 +56,10 @@ class Checkout(object):
     um controle de segurança.
     :type max_uses: Um número inteiro maior que 0 e menor ou igual a 999.
 
-    :param max_ages: (Opcional) Determina o prazo (em segundos) durante o qual o
+    :param max_age: (Opcional) Determina o prazo (em segundos) durante o qual o
     código de pagamento criado pela chamada à API de Pagamentos poderá ser usado.
     Este parâmetro pode ser usado como um controle de segurança.
-    :type max_ages: Um número inteiro maior ou igual a 30 e menor ou igual a 999999999.
+    :type max_age: Um número inteiro maior ou igual a 30 e menor ou igual a 999999999.
 
     '''
 
@@ -74,7 +74,7 @@ class Checkout(object):
                  redirect_url=None,
                  notification_url=None,
                  max_uses=None,
-                 max_ages=None):
+                 max_age=None):
 
         self.receiver_email = receiver_email
         self.currency = currency
@@ -86,24 +86,22 @@ class Checkout(object):
         self.redirect_url = redirect_url
         self.notification_url = notification_url
         self.max_uses = max_uses
-        self.max_ages = max_ages
+        self.max_age = max_age
 
     def validate(self):
         checkout_schema(self)
 
-
-checkout_schema = Schema(Object(
-    {
-        'receiver_email': All(Email(), Length(max=60)),
-        'currency': 'BRL',
-        Required('items'): [item_schema, ],
-        'reference': All(str, Length(max=200)),
-        'sender': sender_schema,
-        'shipping': shipping_schema,
-        'extra_amount': All(float, Range(min=-9999999, max=9999999)),
-        'redirect_url': All(Url(), Length(max=255)),
-        'notification_url': All(Url(), Length(max=255)),
-        'max_uses': All(int, Range(min=1, max=999)),
-        'max_ages': All(int, Range(min=30, max=999999999)),
-    }, cls=Checkout)
-)
+# Definição do validador para o objeto Checkout
+checkout_schema = Schema(Object({
+    'receiver_email': All(Email(), Length(max=60)),
+    'currency': 'BRL',
+    Required('items'): [item_schema, ],
+    'reference': All(str, Length(max=200)),
+    'sender': sender_schema,
+    'shipping': shipping_schema,
+    'extra_amount': All(float, Range(min=-9999999, max=9999999)),
+    'redirect_url': All(Url(), Length(max=255)),
+    'notification_url': All(Url(), Length(max=255)),
+    'max_uses': All(int, Range(min=1, max=999)),
+    'max_age': All(int, Range(min=30, max=999999999)),
+}, cls=Checkout))

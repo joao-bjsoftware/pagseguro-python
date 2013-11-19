@@ -49,6 +49,14 @@ class BasePaymentRequest:
         raise NotImplementedError()
 
     @abstractmethod
+    def set_client(self, *args, **kwargs):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def set_shipping(self, *args, **kwargs):
+        raise NotImplementedError()
+
+    @abstractmethod
     def request(self):
         '''
         A implementação deste método deve:

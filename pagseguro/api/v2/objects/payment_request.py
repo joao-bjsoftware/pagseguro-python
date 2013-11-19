@@ -18,7 +18,9 @@ class PaymentRequest(object):
 
     :param token: (Obrigatório) Token da conta que chama a API.
     :type token: String com 32 caracteres.
-
+    
+    :param checkout: (Obrigatório)
+    :type object Checkout: objeto com os dados da requisição
     '''
 
     def __init__(self, email=None, token=None, checkout=None):
@@ -27,11 +29,12 @@ class PaymentRequest(object):
         self.checkout = checkout
 
     def validate(self):
+        ''' Valida os objetos que serão usados na construção da requisição ao PagSeguro '''
         payment_request_schema(self)
 
     def generate_params(self):
         '''
-        Valida os dados e gera dicionario os parâmetros para a requisição HTTP ao
+        Valida os dados e gera dicionario com os parâmetros para a requisição HTTP POST ao
         PagSeguro
 
         :returns: dictionary
@@ -53,6 +56,7 @@ class PaymentRequest(object):
         return params
 
 
+# Definição do validador para o objeto PaymentRequest
 payment_request_schema = Schema(Object(
     {
         Required('email'): All(Email(), Length(max=60)),
