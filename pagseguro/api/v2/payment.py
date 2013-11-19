@@ -11,6 +11,7 @@ from pagseguro.api.v2.objects.document import Document
 from pagseguro.api.v2.objects.item import Item
 from pagseguro.api.v2.objects.payment_request import PaymentRequest
 from pagseguro.api.v2.objects.sender import Sender
+from pagseguro.api.v2.objects.shipping import Shipping
 from pagseguro.exceptions import PagSeguroApiException, \
     PagSeguroPaymentException
 from xml.etree import ElementTree
@@ -66,10 +67,10 @@ class Payment(BasePaymentRequest):
 
     def set_client(self, name=None, email=None, phone_area_code=None, phone_number=None, cpf_number=None, born_date=None):
         document = Document(value=cpf_number) # Como na versão 2 da API só é permitido CPF e uma pessoa tem no máximo 1 CPF não será tratado como lista 
-        self.checkout.sender = Sender(name=name, email=email, phone_area_code=phone_area_code, phone_number=phone_number, documents=[document,], born_date=born_date) 
+        self.payment_request.checkout.sender = Sender(name=name, email=email, phone_area_code=phone_area_code, phone_number=phone_number, documents=[document,], born_date=born_date) 
 
     def set_shipping(self, shipping_type=None, cost=None, street=None, address_number=None, complement=None, district=None, postal_code=None, city=None, state=None):
-        pass
+        self.payment_request.checkout.shipping = Shipping(shipping_type=shipping_type)
 
     def _process_response_xml(self, response_xml):
         '''
@@ -107,7 +108,8 @@ class Payment(BasePaymentRequest):
         return result
 
     def payment_url(self):
-        ''' Retorna a url para onde o cliente deve ser redirecionado para
+        '''
+        Retorna a url para onde o cliente deve ser redirecionado para
         continuar o fluxo de pagamento.
 
         :return: str, URL de pagamento

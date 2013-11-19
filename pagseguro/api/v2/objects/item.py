@@ -18,7 +18,10 @@ class Item(object):
                  weight=None):
         self.item_id = item_id
         self.description = description
-        self.amount = amount
+        if amount:
+            self.amount = float(amount)
+        else:
+            self.amount = None
         self.quantity = quantity
         self.shipping_cost = shipping_cost
         self.weight = weight

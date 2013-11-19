@@ -10,21 +10,23 @@ from pagseguro.api.v2.payment import Payment as PaymentV2
 class Payment(object):
     '''
     Utilize esta classe para instanciar o objeto que fara a conexão
-    com o PagSeguro
-    
-    :param: email: O email do comprador no PagSeguro
-    :param: token,
+    com o PagSeguro.
+
+    >>> payment = Payment(email='vendedor@domain.tld', token='seutokendeaacessocom32caracteres', version=2)
+    >>> payment.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)
+    >>> payment.add_item(item_id='id-do-item-2', description='Um outro produto', amount=24.1, quantity=2)
+    >>> payment.set_client(name='Cliente Silva')
     '''
 
     @staticmethod
-    def _payment_factory(email, token, version):
+    def _payment_factory(version=2, **kwargs):
         if version == 2:
-            return PaymentV2(email, token)
+            return PaymentV2(**kwargs)
         else:
             raise NotImplementedError()
 
-    def __init__(self, email, token, version=2):
-        self._payment = self._payment_factory(email, token, version)
+    def __init__(self, **kwargs):
+        self._payment = self._payment_factory(**kwargs)
 
     def add_item(self, *args, **kwargs):
         '''
