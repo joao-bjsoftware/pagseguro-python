@@ -45,15 +45,18 @@ class BasePaymentRequest:
         raise NotImplementedError()
 
     @abstractmethod
-    def add_item(self, item_id, description, amount, quantity, shipping_cost=None, weight=None):
+    def add_item(self, *args, **kwargs):
+        ''' Adiciona item ao pedido de pagamento '''
         raise NotImplementedError()
 
     @abstractmethod
     def set_client(self, *args, **kwargs):
+        ''' Permite definir os atributos do comprador '''
         raise NotImplementedError()
 
     @abstractmethod
     def set_shipping(self, *args, **kwargs):
+        ''' Define os atributos do frete '''
         raise NotImplementedError()
 
     @abstractmethod

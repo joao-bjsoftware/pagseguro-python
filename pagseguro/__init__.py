@@ -12,10 +12,16 @@ class Payment(object):
     Utilize esta classe para instanciar o objeto que fara a conexão
     com o PagSeguro.
 
-    >>> payment = Payment(email='vendedor@domain.tld', token='seutokendeaacessocom32caracteres', version=2)
+    Examples:
+
+    >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN, version=2)
     >>> payment.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)
     >>> payment.add_item(item_id='id-do-item-2', description='Um outro produto', amount=24.1, quantity=2)
-    >>> payment.set_client(name='Cliente Silva')
+    >>> payment.set_client(name='Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
+    >>> payment.set_shipping(cost=1.2)
+    >>> payment.request()
+    >>> url = payment.payment_url
+    
     '''
 
     @staticmethod
@@ -64,5 +70,5 @@ class Payment(object):
 
     @property
     def payment_url(self):
-        ''' '''
+        ''' URL para redirecionar o usuário para completar o pagamento '''
         return self._payment.payment_url()
