@@ -9,8 +9,13 @@
 ```
 >>> from pagseguro import Payment
 >>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
->>> pagamento.add_item(item_id='id-do-seu-item', description='Descricao do item', amount=12.3, quantity=1)
->>> resultado = pagament.request()
+>>> pagamento.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)
+>>> pagamento.add_item(item_id='id-do-item-2', description='Um outro produto', amount=24.1, quantity=2)
+>>> pagamento.set_client(name='Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
+>>> pagamento.set_shipping(cost=1.2)
+>>> pagamento.request()
+>>> url = pagamento.payment_url
+
 ```
 
 ## Install
