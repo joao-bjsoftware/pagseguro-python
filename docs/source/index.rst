@@ -32,14 +32,18 @@ Guia rápido
 
     Para os impacientes:
 
-    >>> from py_pagseguro import Payment
-    >>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
-    # Adicionar um item ao pedido, com 2 produtos e custo total de R$ 12,30  
-    >>> pagamento.add_item(item_id='id-do-seu-item', description='Descricao do item', amount=12.3, quantity=2)
-    # Enviar a solicitação ao PagSeguro 
-    >>> pagamento.request()
-    # Em caso de sucesso você pode obter a url para direcionar o usuário com:
-    >>> url =  pagamento.payment_url()
+	>>> from pagseguro import Payment
+	>>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
+	# Adicionar um item ao pedido, com 2 produtos e custo total de R$ 7,00
+	>>> pagamento.add_item(item_id='id-do-item-', description='Desc. do produto', amount=7, quantity=2)
+	# Adiciona informações sobre o comprador
+	>>> pagamento.set_client(name='Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
+	# E um custo para o frete
+	>>> pagamento.set_shipping(cost=1.2)
+	# Enviar a solicitação ao PagSeguro
+	>>> pagamento.request()
+	# Em caso de sucesso você pode obter a url para direcionar o usuário com:
+	>>> url = pagamento.payment_url
 
 
 Indices e Tabelas
