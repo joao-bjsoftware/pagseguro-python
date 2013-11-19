@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pagseguro-python',
-    version='0.9',
+    version='0.10',
     description='PagSeguro API v.2 client library ',
     author='Ricardo Silva',
     author_email='rsas79@gmail.com',
@@ -18,4 +18,7 @@ setup(
         'xmltodict>=0.8.3',
         'python-dateutil>=2.2'
     ],
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+    ]
 )
