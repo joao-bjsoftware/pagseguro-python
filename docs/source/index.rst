@@ -46,6 +46,13 @@ Guia rápido
 	>>> url = pagamento.payment_url
 
 
+Guia
+----
+
+
+.. autoclass:: pagseguro.Payment
+
+
 Indices e Tabelas
 -----------------
 
