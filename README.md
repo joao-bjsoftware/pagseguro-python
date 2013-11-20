@@ -8,9 +8,9 @@
 
 ```python
 >>> from pagseguro import Payment
->>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
->>> pagamento.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)
->>> pagamento.set_client(name='Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
+>>> pagamento = Payment(email=u'emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
+>>> pagamento.add_item(item_id=u'id-do-item-1', description=u'Desc. do produto', amount=7, quantity=2)
+>>> pagamento.set_client(name=u'Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
 >>> pagamento.set_shipping(cost=1.2)
 >>> pagamento.request()
 >>> url = pagamento.payment_url
