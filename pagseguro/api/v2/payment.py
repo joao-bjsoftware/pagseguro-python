@@ -4,6 +4,8 @@ from pagseguro.api.v2 import settings
 from pagseguro.api.v2.schemas import item_schema, client_schema, shipping_schema
 from pagseguro.exceptions import PagSeguroApiException, \
     PagSeguroPaymentException
+from pagseguro.validators import Email
+from voluptuous import Schema, Object, Required, All, Length, Range, Url
 from xml.etree import ElementTree
 import dateutil.parser
 import logging
@@ -15,12 +17,20 @@ logger = logging.getLogger(__name__)
 class Payment(BasePaymentRequest):
     ''' Classe que implementa a requisição à API do PagSeguro versão 2
     
-    .. todo::
-        Incluir metadata
-    
+    .. todo:: Adicionar suporte à metadata no checkout 
+
     Args:
         email (str): (obrigatório) O email da sua conta no PagSeguro
         token (str): (obrigatório) O seu token de acesso ao PagSeguro
+        receiver_email (str): (opcional)
+        currency (str): (opcional) A moeda a ser utilizada. Nesta versão apenas o valor BRL é aceito
+            e ele é definido por padrão. Não se preocupe com este parâmetro.
+        reference (str): (opcional) Um identificador para a transação. Você irá utilizar este valor 
+            posteriormente para identificar as transações.
+        extra_amount (float): (opcional) Um valor extra que deve ser adicionado ou subtraído ao valor
+            total do pagamento.
+        redirect_url (str): (opcional)  URL para a qual o comprador será redirecionado após o final
+            do fluxo de pagamento. Tamanho máximo de 255 caracteres.
 
     '''
 
@@ -34,7 +44,7 @@ class Payment(BasePaymentRequest):
                  redirect_url=None,
                  notification_url=None,
                  max_uses=None,
-                 max_age=None):
+                 max_age=None, **kwargs):
 
         self.email = email
         self.token = token
@@ -111,6 +121,7 @@ class Payment(BasePaymentRequest):
         '''
         Faz a requisição de pagamento ao servidor do PagSeguro.
         '''
+        payment_v2_schema(self)
         params = self._build_params()
         req = requests.post(
             settings.PAGSEGURO_API_URL,
@@ -253,3 +264,25 @@ class Payment(BasePaymentRequest):
             return u'%s?code=%s' % (settings.PAGSEGURO_API_URL, self.response['code'])
         else:
             return None
+
+
+
+#: Schema utilizado para validar os atributos da classe Payment da versão 2 da API
+#: ..todo:: Verificar porque a validação de URLs não está funcionando
+payment_v2_schema = Schema(Object({
+    Required('email'): All(Email(), Length(max=60)),
+    'token': All(str, Length(min=32, max=32)),
+    'receiver_email': All(Email(), Length(max=60)),
+    'currency': 'BRL',
+    'reference': All(str, Length(max=200)),
+    'extra_amount': All(float, Range(min=-9999999.01, max=9999999)),
+    'redirect_url': Url(),
+    'notification_url':Url(),
+    'max_uses': All(int, Range(min=1, max=999)),
+    'max_age': All(int, Range(min=30,max=999999999)),
+    'client': client_schema,
+    'items': [ item_schema, ],
+    'shipping' : shipping_schema,
+    'response': str,
+} ,cls=Payment)
+)

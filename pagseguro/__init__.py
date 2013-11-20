@@ -4,12 +4,12 @@ from pagseguro.api.v2.payment import Payment as PaymentV2
 
 class Payment(object):
     '''
-    Esta é a classe principal da lib. Você vai utilizar ela para realizar toda a 
+    Esta é a classe principal do PagSeguro-Python. É ela que você vai utilizar para realizar toda a 
     comunicação com a API do PagSeguro.
 
+    Documentação da classe:
     
-    Para a versão 2.0:
-        .. autofunction:: pagseguro.api.v2.payment.Payment
+    .. autofunction:: pagseguro.api.v2.payment.Payment
 
 
     Exemplos:

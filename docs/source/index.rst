@@ -11,26 +11,30 @@ Documentação do PagSeguro-Python |version|
 O que é
 -------
 
- Uma biblioteca Python para acesso à API versão 2.0 do PagSeguro. 
+ Uma biblioteca Python para acesso à API versão 2.0 do PagSeguro. Este projeto
+ foi desenvolvido inicialmente para uso no site `Pizze.me`_ mas está disponível
+ como Software Livre sobre a licença Apache 2.0. Sua ajuda para torná-lo melhor
+ é muito bem vinda!
+ 
+.. _Pizze.me: http://pizze.me
 
 
 Instalação
 ----------
 
-  Utilize o pip::
+  Utilize a boa e velha CheeseShop::
 
     $ pip install pagseguro-python
 
-  Ou você pode acessar os fontes através do GitHub em::
-  
-    https://github.com/ricardosasilva/pagseguro-python
+  Ou você pode ir direto aos fontes no `GitHub`_.
 
+.. _GitHub: https://github.com/ricardosasilva/pagseguro-python
 
 
 Guia rápido 
 -----------
 
-    Para os impacientes:
+  Para os impacientes:
 
 	>>> from pagseguro import Payment
 	>>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
@@ -45,10 +49,14 @@ Guia rápido
 	# Em caso de sucesso você pode obter a url para direcionar o usuário com:
 	>>> url = pagamento.payment_url
 
-To Do
------
-
-.. todolist::
+Guia de Uso
+-----------
+.. toctree::
+	:maxdepth: 1
+   
+	payment
+	notify
+	desenvolvimento
 
 Indices e Tabelas
 -----------------
