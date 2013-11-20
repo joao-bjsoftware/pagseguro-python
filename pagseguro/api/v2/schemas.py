@@ -4,8 +4,8 @@ from voluptuous import Schema, Required, All, Length, Range, Optional, Match, \
     Any
 
 item_schema = Schema({
-    Required('item_id'): All(str, Length(min=1, max=100)),
-    Required('description'): All(str, Length(min=1, max=100)),
+    Required('item_id'): All(unicode, Length(min=1, max=100)),
+    Required('description'): All(unicode, Length(min=1, max=100)),
     Required('amount'): All(float, Range(min=0.01, max=9999999)),
     Required('quantity'): All(int, Range(min=1, max=999)),
     'shipping_cost': All(float, Range(min=0.01, max=9999999)),
@@ -14,7 +14,7 @@ item_schema = Schema({
 
 #: .. todo:: Validar born_date e CPF
 client_schema = Schema({
-    'name': str,
+    'name': unicode,
     'email': All(Email(), Length(max=60)),
     'phone_area_code': All(PhoneArea(), Length(min=2, max=2)),
     'phone_number': All(PhoneNumber(), Length(min=7, max=9)),
@@ -25,13 +25,13 @@ client_schema = Schema({
 shipping_schema = Schema({
     'type': Any(1, 2, 3),
     'cost': All(float, Range(min=0.01, max=9999999)),
-    'street': All(str, Length(max=80)),
-    'number': All(str, Length(max=20)),
-    'complement': All(str, Length(max=40)),
-    'district': All(str, Length(max=60)),
+    'street': All(unicode, Length(max=80)),
+    'number': All(unicode, Length(max=20)),
+    'complement': All(unicode, Length(max=40)),
+    'district': All(unicode, Length(max=60)),
     'postal_code': All(Match('[\d]{8,8}', msg=u'PostalCode invalido. Informe um numero com oito digitos'), 
                          Length(min=8, max=8)),
-    'city': All(str, Length(min=2, max=60)),
+    'city': All(unicode, Length(min=2, max=60)),
     'state': All(BrState(), Length(min=2, max=2)),
     'country': 'BRA',
 })
