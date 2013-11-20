@@ -12,13 +12,14 @@ item_schema = Schema({
     Optional('weight'): All(int, Range(max=30000)),
 })
 
+#: .. todo:: Validar born_date e CPF
 client_schema = Schema({
     'name': str,
     'email': All(Email(), Length(max=60)),
     'phone_area_code': All(PhoneArea(), Length(min=2, max=2)),
     'phone_number': All(PhoneNumber(), Length(min=7, max=9)),
-    'cpf': All(Match('[\d]{11}', msg='CPF invalido. Informe um numero com 11 digitos'), Length(min=11, max=11)), # TODO: Validar CPF
-    'born_date': str #TODO: Validar data
+    'cpf': All(Match('[\d]{11}', msg='CPF invalido. Informe um numero com 11 digitos'), Length(min=11, max=11)),
+    'born_date': str 
 })
 
 shipping_schema = Schema({

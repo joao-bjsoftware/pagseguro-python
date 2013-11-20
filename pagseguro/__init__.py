@@ -4,10 +4,15 @@ from pagseguro.api.v2.payment import Payment as PaymentV2
 
 class Payment(object):
     '''
-    Utilize esta classe para instanciar o objeto que fara a conexão
-    com o PagSeguro.
+    Esta é a classe principal da lib. Você vai utilizar ela para realizar toda a 
+    comunicação com a API do PagSeguro.
 
-    Examples:
+    
+    Para a versão 2.0:
+        .. autofunction:: pagseguro.api.v2.payment.Payment
+
+
+    Exemplos:
 
     >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN, version=2)
     >>> payment.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)

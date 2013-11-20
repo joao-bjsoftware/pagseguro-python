@@ -15,7 +15,12 @@ logger = logging.getLogger(__name__)
 class Payment(BasePaymentRequest):
     ''' Classe que implementa a requisição à API do PagSeguro versão 2
     
-    TODO: Incluir metadata
+    .. todo::
+        Incluir metadata
+    
+    Args:
+        email (str): (obrigatório) O email da sua conta no PagSeguro
+        token (str): (obrigatório) O seu token de acesso ao PagSeguro
 
     '''
 
@@ -151,7 +156,7 @@ class Payment(BasePaymentRequest):
         if self.max_age:
             params['max_age'] = self.max_age
 
-        #TODO: Incluir metadata
+        #TODO: Incluir metadata aqui
 
         # Itens
         for index, item in enumerate(self.items, start=1):

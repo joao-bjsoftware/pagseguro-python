@@ -45,13 +45,10 @@ Guia rápido
 	# Em caso de sucesso você pode obter a url para direcionar o usuário com:
 	>>> url = pagamento.payment_url
 
+To Do
+-----
 
-Guia
-----
-
-
-.. autoclass:: pagseguro.Payment
-
+.. todolist::
 
 Indices e Tabelas
 -----------------
