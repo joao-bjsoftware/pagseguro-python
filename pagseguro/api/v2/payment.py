@@ -105,7 +105,7 @@ class Payment(BasePaymentRequest):
             >>> from pagseguro import Payment
             >>> from pagseguro import local_settings
             >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN)
-            >>> payment.set_client(name='Adam Yauch', phone_area_code=11)
+            >>> payment.set_client(name=u'Adam Yauch', phone_area_code=11)
         '''
         self.client = {}      
         for arg, value in kwargs.iteritems():
