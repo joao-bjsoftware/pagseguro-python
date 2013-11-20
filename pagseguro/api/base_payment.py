@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 7, 2013
-
-@author: Ricardo Silva
-'''
 from abc import ABCMeta, abstractmethod
 
 

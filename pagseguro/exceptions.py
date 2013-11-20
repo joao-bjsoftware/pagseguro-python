@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 6, 2013
-
-@author: Ricardo Silva
-'''
 
 
 class PagSeguroException(Exception):

@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 6, 2013
-
-@author: Ricardo Silva
-'''
 from pagseguro.api.base_payment import BasePaymentRequest
 from pagseguro.api.v2 import settings
 from pagseguro.api.v2.schemas import item_schema, client_schema, shipping_schema
@@ -110,8 +105,6 @@ class Payment(BasePaymentRequest):
     def request(self):
         '''
         Faz a requisição de pagamento ao servidor do PagSeguro.
-
-        :returns: str, URL para o cliente continuar o pagamento
         '''
         params = self._build_params()
         req = requests.post(

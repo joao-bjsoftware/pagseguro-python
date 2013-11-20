@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 5, 2013
-
-@author: ricardo
-'''
 from voluptuous import Invalid
 import re
 

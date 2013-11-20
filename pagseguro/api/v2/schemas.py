@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 19, 2013
-
-@author: Ricardo Silva
-'''
 from pagseguro.validators import Email, PhoneArea, PhoneNumber, BrState
 from voluptuous import Schema, Required, All, Length, Range, Optional, Match, \
     Any

@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 6, 2013
-
-@author: Ricardo Silva
-'''
 from pagseguro.api.v2 import settings
 from pagseguro.exceptions import PagSeguroApiException
 import requests

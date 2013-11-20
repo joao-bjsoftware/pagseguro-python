@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 7, 2013
-
-@author: ricardo
-'''
 from pagseguro.api.v2.payment import Payment as PaymentV2
 
 

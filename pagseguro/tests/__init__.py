@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 6, 2013
-
-@author: Ricardo Silva
-'''
 from pagseguro import local_settings
 from pagseguro.tests.payment import PaymentTest
 import doctest

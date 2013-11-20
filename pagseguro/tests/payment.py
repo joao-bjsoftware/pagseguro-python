@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Nov 19, 2013
-
-@author: Ricardo Silva
-'''
 from pagseguro import Payment
 from pagseguro.exceptions import PagSeguroApiException
 from unittest.case import TestCase
