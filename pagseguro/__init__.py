@@ -21,13 +21,13 @@ class Payment(object):
 
     Exemplos:
 
-    >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN)
-    >>> payment.add_item(item_id=u'id-do-item-1', description=u'Desc. do produto', amount=7, quantity=2)
-    >>> payment.add_item(item_id=u'id-do-item-2', description=u'Um outro produto', amount=24.1, quantity=2)
-    >>> payment.set_client(name=u'Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
-    >>> payment.set_shipping(cost=1.2)
-    >>> payment.request()
-    >>> url = payment.payment_url
+        >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN)
+        >>> payment.add_item(item_id=u'id-do-item-1', description=u'Desc. do produto', amount=7, quantity=2)
+        >>> payment.add_item(item_id=u'id-do-item-2', description=u'Um outro produto', amount=24.1, quantity=2)
+        >>> payment.set_client(name=u'Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
+        >>> payment.set_shipping(cost=1.2)
+        >>> payment.request()
+        >>> url = payment.payment_url
     
     '''
 

@@ -14,7 +14,7 @@ A classe Payment
 Items da compra
 ---------------
 
-  Para adicionar items à sua solicitação de pagamento
+  .. automethod:: pagseguro.api.v2.payment.Payment.add_item()
 
 
 Dados do comprador
@@ -26,4 +26,4 @@ Dados do comprador
 Informações sobre o frete
 -------------------------
 
-  Dados
+  .. automethod:: pagseguro.api.v2.payment.Payment.set_shipping()
