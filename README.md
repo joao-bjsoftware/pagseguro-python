@@ -6,7 +6,7 @@
 
 ## Quick Start
 
-```
+```python
 >>> from pagseguro import Payment
 >>> pagamento = Payment(email='emaildasuaconta@dominio.tld', token='seutokendeaacessocom32caracteres')
 >>> pagamento.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)
@@ -19,7 +19,7 @@
 
 ## Install
 
-```
+```bash
 $ pip install pagseguro-python
 
 ```
