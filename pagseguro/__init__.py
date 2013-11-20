@@ -4,17 +4,24 @@ from pagseguro.api.v2.payment import Payment as PaymentV2
 
 class Payment(object):
     '''
-    Esta é a classe principal do PagSeguro-Python. É ela que você vai utilizar para realizar toda a 
-    comunicação com a API do PagSeguro.
+    Esta é a classe principal do PagSeguro-Python. Todo o processo de pagamento é
+    realizado através dela. 
+    
+    O mínimo necessário para fazer uma solicitação de pagamento é: 
 
-    Documentação da classe:
+    - Criar uma instância de Payment passando o seu email e token.
+    - Adicionar um ou mais itens.
+    - Chamar o método request()
+    - Ler o atributo payment_url para obter a URL para a qual o comprador deve
+      ser redirecionado 
+
+    Mas é possível também definir outros atributos:
     
     .. autofunction:: pagseguro.api.v2.payment.Payment
 
-
     Exemplos:
 
-    >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN, version=2)
+    >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN)
     >>> payment.add_item(item_id='id-do-item-1', description='Desc. do produto', amount=7, quantity=2)
     >>> payment.add_item(item_id='id-do-item-2', description='Um outro produto', amount=24.1, quantity=2)
     >>> payment.set_client(name='Adam Yauch', phone_area_code=11, phone_number=12341234, cpf='93537621701')
@@ -45,6 +52,11 @@ class Payment(object):
         '''
         Método proxy para a classe que implementa o método set_client na
         versão da API escolhida
+
+        Exemplo:
+        >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN)
+        >>> payment.set_client(name='Adam Yauch', phone_area_code=11)
+
         '''
         return self._payment.set_client(*args, **kwargs)
 

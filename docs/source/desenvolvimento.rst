@@ -28,7 +28,7 @@ Sobre a Documentação do projeto
   Qualquer ajuda em mante-la é muito bem vinda ;)
   
   Os arquivos fontes ficam no diretório docs/source e possuem a extensão
-  .rst. Você pode gerar uma versão local da documentação em HTML com o commando::
+  .rst. Você pode gerar uma versão local da documentação em HTML com o comando::
 
     $ cd docs
     $ make html

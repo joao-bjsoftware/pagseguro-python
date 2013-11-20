@@ -31,6 +31,14 @@ class Payment(BasePaymentRequest):
             total do pagamento.
         redirect_url (str): (opcional)  URL para a qual o comprador será redirecionado após o final
             do fluxo de pagamento. Tamanho máximo de 255 caracteres.
+        notification_url (str): (opcional)  URL para a qual o PagSeguro enviará os códigos de
+            notificação relacionados ao pagamento. Toda vez que houver uma mudança no status da
+            transação e que demandar sua atenção, uma nova notificação será enviada para este endereço.
+        max_uses (int): Determina o número máximo de vezes que o código de pagamento criado pela chamada
+            à API de Pagamentos poderá ser usado. Este parâmetro pode ser usado como um controle de segurança.        
+        max_age (int): (opcional) Determina o prazo (em segundos) durante o qual o código de pagamento
+            criado pela chamada à API de Pagamentos poderá ser usado. Este parâmetro pode ser usado
+            como um controle de segurança
 
     '''
 
@@ -80,7 +88,10 @@ class Payment(BasePaymentRequest):
         self.items.append(item)
 
     def set_client(self, *args, **kwargs):
-        ''' Inclui dados do comprador
+        ''' Se você possui informações cadastradas sobre o comprador você pode utilizar
+        este método para enviar estas informações para o PagSeguro. É uma boa prática pois
+        evita que seu cliente tenha que preencher estas informações novamente na página
+        do PagSeguro.
 
         Args:
             name (str): (opcional) Nome do cliente
@@ -89,6 +100,12 @@ class Payment(BasePaymentRequest):
             phone_number (str): (opcional) O número de telefone do cliente.
             cpf: (str): (opcional) Número do cpf do comprador
             born_date: (date): Data de nascimento no formato dd/MM/yyyy
+
+        Exemplo:
+            >>> from pagseguro import Payment
+            >>> from pagseguro import local_settings
+            >>> payment = Payment(email=local_settings.PAGSEGURO_ACCOUNT_EMAIL, token=local_settings.PAGSEGURO_TOKEN)
+            >>> payment.set_client(name='Adam Yauch', phone_area_code=11)
         '''
         self.client = {}      
         for arg, value in kwargs.iteritems():

@@ -37,10 +37,4 @@ pagseguro.validators module
     :show-inheritance:
 
 
-Module contents
----------------
 
-.. automodule:: pagseguro
-    :members:
-    :undoc-members:
-    :show-inheritance:
