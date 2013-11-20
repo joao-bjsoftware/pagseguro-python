@@ -5,7 +5,9 @@
 
 ## O que é ?
 
-Uma biblioteca Python para acesso à API versão 2.0 do PagSeguro. Este projeto foi desenvolvido inicialmente para uso no site Pizze.me mas está disponível como Software Livre sobre a licença Apache 2.0. Sua ajuda para torná-lo melhor é muito bem vinda!
+Uma biblioteca Python para acesso à API versão 2.0 do PagSeguro. Este projeto foi desenvolvido inicialmente para uso 
+no site [Pizze.me](http://pizze.me) mas está disponível como Software Livre sobre a licença Apache 2.0. Sua ajuda para
+torná-lo melhor é muito bem vinda!
 
 ## Guia rápido
 
