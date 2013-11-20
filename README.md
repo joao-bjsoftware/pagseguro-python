@@ -26,4 +26,5 @@ $ pip install pagseguro-python
 
 ## Documentação
 
+A documentação completa está em:
 [http://pagseguro-python.readthedocs.org](http://pagseguro-python.readthedocs.org/en/latest/)
