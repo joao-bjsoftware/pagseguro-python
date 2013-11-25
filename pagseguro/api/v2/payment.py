@@ -138,7 +138,10 @@ class Payment(BasePaymentRequest):
         '''
         Faz a requisição de pagamento ao servidor do PagSeguro.
         '''
+#        try:
         payment_v2_schema(self)
+#        except MultipleInvalid as e:
+#            raise PagSeguroPaymentValidationException(u'Erro na validação dos dados: %s' % e.msg)
         params = self._build_params()
         req = requests.post(
             settings.PAGSEGURO_API_URL,
@@ -278,10 +281,9 @@ class Payment(BasePaymentRequest):
         :return: str, URL de pagamento
         '''
         if self.response:
-            return u'%s?code=%s' % (settings.PAGSEGURO_API_URL, self.response['code'])
+            return u'%s?code=%s' % (settings.PAGSEGURO_PAYMENT_URL, self.response['code'])
         else:
             return None
-
 
 
 #: Schema utilizado para validar os atributos da classe Payment da versão 2 da API
