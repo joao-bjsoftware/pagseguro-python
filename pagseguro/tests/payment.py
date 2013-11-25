@@ -26,7 +26,7 @@ class PaymentTest(TestCase):
         self.assertRaises(MultipleInvalid, self.payment.set_client, phone_number=3)
 
     def test_client_email(self):
-        self.payment.set_client(email='email+valido@dominio.tld')
+        self.payment.set_client(email='email-valido@dominio.tld')
         self.assertRaises(MultipleInvalid, self.payment.set_client, email='invalido')
 
     def test_shipping(self):

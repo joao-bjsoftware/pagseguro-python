@@ -109,7 +109,8 @@ class Payment(BasePaymentRequest):
         '''
         self.client = {}      
         for arg, value in kwargs.iteritems():
-            self.client[arg] = value
+            if value:
+                self.client[arg] = value
         client_schema(self.client)
 
     def set_shipping(self, *args, **kwargs):
