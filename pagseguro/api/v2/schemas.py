@@ -8,7 +8,6 @@ item_schema = Schema({
     Required('description'): All(unicode, Length(min=1, max=100)),
     Required('amount'): All(float, Range(min=0.01, max=9999999)),
     Required('quantity'): All(int, Range(min=1, max=999)),
-    'shipping_cost': All(float, Range(min=0.01, max=9999999)),
     Optional('weight'): All(int, Range(max=30000)),
 })
 
