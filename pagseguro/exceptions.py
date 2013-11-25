@@ -15,6 +15,8 @@ class PagSeguroApiException(PagSeguroException):
 class PagSeguroPaymentException(PagSeguroApiException):
     ''' Erros durante o processo de pagamento '''
 
+class PagSeguroPaymentValidationException(PagSeguroApiException):
+    ''' Erro durante a validação dos dados '''
 
 class PagSeguroNotificationException(PagSeguroApiException):
     ''' Erros durante o processo de notificacoes de pagamento '''
