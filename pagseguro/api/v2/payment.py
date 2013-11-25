@@ -143,6 +143,7 @@ class Payment(BasePaymentRequest):
 #        except MultipleInvalid as e:
 #            raise PagSeguroPaymentValidationException(u'Erro na validação dos dados: %s' % e.msg)
         params = self._build_params()
+        logger.debug(u'Parametros da requisicao ao PagSeguro: %s' % params)
         req = requests.post(
             settings.PAGSEGURO_API_URL,
             params=params,
