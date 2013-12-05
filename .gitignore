@@ -36,3 +36,4 @@ nosetests.xml
 .pydevproject
 .settings
 pagseguro/local_settings.py
+*~
