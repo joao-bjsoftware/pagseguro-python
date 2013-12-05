@@ -15,7 +15,6 @@ TRANSACTION_TYPES = {
     TRANSACTION_TYPE_PAGAMENTO: u'Pagamento',
 }
 
-
 STATUS_AGUARDANDO_PAGAMENTO = 1
 STATUS_EM_ANALISE = 2
 STATUS_PAGA = 3
@@ -33,8 +32,6 @@ STATUS = {
   STATUS_DEVOLVIDA: u'Devolvida',
   STATUS_CANCELADA: u'Cancelada',
 }
-
-STATUS_CHOICES = [(str(status), descr) for status, descr in STATUS.iteritems()]
 
 PAYMENT_TYPE_CARTAO_CREDITO = 1
 PAYMENT_TYPE_BOLETO = 2
@@ -64,7 +61,7 @@ class Transaction(object):
 # Validador do dicionário construido com base no XML de notificação do PagSeguro
 transaction_schema = Schema({
     Required('transaction'):  {
-        Required('date'): unicode, #TOOD: Validar
+        Required('date'): unicode, #TODO: Validar
         Required('code'): All(unicode, Length(min=36, max=36)),
         'reference': All(unicode, Length(min=0, max=200)),
         Required('type'): Coerce(int),

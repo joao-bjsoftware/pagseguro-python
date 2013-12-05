@@ -13,17 +13,19 @@ class Notification(object):
     Classe para tratamento das notificações sobre o status de pagamentos
     '''
 
-    def __init__(self, email, token, notification_code, notification_type='transaction'):
+    def __init__(self, email, token, notification_code, notification_type='transaction', notification_url=settings.PAGSEGURO_NOTIFICATION_URL):
         if notification_type != 'transaction':
             logger.warning(u'O campo notificationType recebido é diferente do valor esperado: Deveria ser "transaction" mas foi recebido "%s"' % notification_type)
 
+        self.notification_url = notification_url
         self.response = self._get_notification(email, token, notification_code)
+        self.transaction = None
         self.notification_code = notification_code
 
     def _get_notification(self, email, token, notification_code):
         ''' Consulta o status do pagamento '''        
         url = u'{notification_url}{notification_code}?email={email}&token={token}'.format(
-                                                                                  notification_url=settings.PAGSEGURO_NOTIFICATION_URL,
+                                                                                  notification_url=self.notification_url,
                                                                                   notification_code=notification_code,
                                                                                   email=email,
                                                                                   token=token)
