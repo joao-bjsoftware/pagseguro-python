@@ -18,6 +18,7 @@ class Notification(object):
             logger.warning(u'O campo notificationType recebido é diferente do valor esperado: Deveria ser "transaction" mas foi recebido "%s"' % notification_type)
  
         self.notification_code = notification_code
+        self.notification_url = notification_url
         self.response = self._get_notification(email, token)
         self.notification_code = notification_code
 
