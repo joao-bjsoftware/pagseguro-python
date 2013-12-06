@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pagseguro.api.v2 import settings
-from pagseguro.api.v2.transaction import Transaction
+from pagseguro.api.v2.transaction import transaction_schema
 from pagseguro.exceptions import PagSeguroApiException
 import logging
 import requests
@@ -17,10 +17,8 @@ class Notification(object):
         if notification_type != 'transaction':
             logger.warning(u'O campo notificationType recebido é diferente do valor esperado: Deveria ser "transaction" mas foi recebido "%s"' % notification_type)
  
-        self.notification_url = notification_url
         self.notification_code = notification_code
         self.response = self._get_notification(email, token)
-        self.transaction = None
         self.notification_code = notification_code
 
     def _get_notification(self, email, token):
@@ -30,11 +28,12 @@ class Notification(object):
                                                                                   notification_code=self.notification_code,
                                                                                   email=email,
                                                                                   token=token)
-        print url
         req = requests.get(url)
         if req.status_code == 200:
-            self.transaction = Transaction(req.text)
+            transaction_dict = xmltodict.parse(req.text)
+            transaction_schema(transaction_dict)
+            self.transaction = transaction_dict.get('transaction')
         else:
             raise PagSeguroApiException(
-                        u'Erro ao fazer request para a API de notificacao:' +
+                        u'Erro ao fazer request para a API de notificacao:' + 
                         ' HTTP Status=%s - Response: %s' % (req.status_code, req.text))                

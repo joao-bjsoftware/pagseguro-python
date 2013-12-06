@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
-
-from distutils.core import setup
 from setuptools import setup, find_packages
 
 setup(
     name='pagseguro-python',
-    version='0.24',
+    version='0.25',
     description='PagSeguro API v.2 client library ',
     author='Ricardo Silva',
     author_email='rsas79@gmail.com',

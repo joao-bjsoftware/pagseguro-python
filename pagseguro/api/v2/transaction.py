@@ -6,8 +6,6 @@ Created on Nov 17, 2013
 '''
 from pagseguro.validators import PhoneArea, PhoneNumber, BrState
 from voluptuous import Schema, Required, All, Length, Coerce, Range
-import xmltodict
-
 
 TRANSACTION_TYPE_PAGAMENTO = 1
 
@@ -48,14 +46,6 @@ PAYMENT_TYPES = {
     PAYMENT_TYPE_OI_PAGGO: u'Oi Paggo',
     PAYMENT_TYPE_DEPOSITO_EM_CONTA: u'Depósito em Conta'
 }
-
-
-class Transaction(object):
-    ''' Classe que implementa uma transação recebida através de uma notificação do PagSeguro '''
-
-    def __init__(self, xml):
-        self.data = xmltodict.parse(xml)
-        transaction_schema(self.data)
 
 
 # Validador do dicionário construido com base no XML de notificação do PagSeguro
