@@ -16,25 +16,25 @@ class Notification(object):
     def __init__(self, email, token, notification_code, notification_type='transaction', notification_url=settings.PAGSEGURO_NOTIFICATION_URL):
         if notification_type != 'transaction':
             logger.warning(u'O campo notificationType recebido é diferente do valor esperado: Deveria ser "transaction" mas foi recebido "%s"' % notification_type)
-
+ 
         self.notification_url = notification_url
-        self.response = self._get_notification(email, token, notification_code)
+        self.notification_code = notification_code
+        self.response = self._get_notification(email, token)
         self.transaction = None
         self.notification_code = notification_code
 
-    def _get_notification(self, email, token, notification_code):
+    def _get_notification(self, email, token):
         ''' Consulta o status do pagamento '''        
         url = u'{notification_url}{notification_code}?email={email}&token={token}'.format(
                                                                                   notification_url=self.notification_url,
-                                                                                  notification_code=notification_code,
+                                                                                  notification_code=self.notification_code,
                                                                                   email=email,
                                                                                   token=token)
+        print url
         req = requests.get(url)
         if req.status_code == 200:
-            transaction_text = xmltodict.parse(req.text)
-            self.transaction = Transaction(transaction_text)
+            self.transaction = Transaction(req.text)
         else:
             raise PagSeguroApiException(
                         u'Erro ao fazer request para a API de notificacao:' +
                         ' HTTP Status=%s - Response: %s' % (req.status_code, req.text))                
-            
