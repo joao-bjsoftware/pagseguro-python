@@ -31,6 +31,7 @@ class Notification(object):
                                                                                   token=token)
         req = requests.get(url)
         if req.status_code == 200:
+            logger.debug( u'XML com informacoes da transacao recebido: {0}'.format(req.text) )
             transaction_dict = xmltodict.parse(req.text)
             transaction_schema(transaction_dict)
             self.transaction = transaction_dict.get('transaction')
