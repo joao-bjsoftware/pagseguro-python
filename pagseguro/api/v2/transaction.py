@@ -5,7 +5,8 @@ Created on Nov 17, 2013
 @author: Ricardo Silva
 '''
 from pagseguro.validators import PhoneArea, PhoneNumber, BrState
-from voluptuous import Schema, Required, All, Length, Coerce, Range
+from voluptuous import Schema, Required, All, Length, Coerce, Range, Optional, \
+    Any
 
 TRANSACTION_TYPE_PAGAMENTO = 1
 
@@ -76,7 +77,7 @@ transaction_schema = Schema({
                 Required('description'): unicode,
                 Required('amount'): Coerce(float),
                 Required('quantity'): All(Coerce(int), Range(min=1, max=999))
-            },]   
+            }],
         },
         Required('sender'): {
             Required('email'): All(unicode, Length(max=60)),
@@ -93,11 +94,11 @@ transaction_schema = Schema({
                 'country': 'BRA',
                 'state': BrState(),
                 'city': unicode,
-                'postalCode': All(Coerce(int), Range(max=99999999)),
-                'district': unicode,
-                'street': unicode,
-                'number': unicode,
-                'complement': unicode, 
+                Optional('postalCode'): All(Coerce(int), Range(max=99999999)),
+                Optional('district'): Any(unicode, None),
+                Optional('street'): Any(unicode, None),
+                Optional('number'): Any(unicode, None),
+                Optional('complement'): Any(unicode, None), 
             }
         }
     }

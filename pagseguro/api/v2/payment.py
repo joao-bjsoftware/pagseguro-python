@@ -69,6 +69,7 @@ class Payment(BasePaymentRequest):
         self.client = {}
         self.shipping = {}
         self.response = None
+        self.params = None
 
     def api_version(self):
         return u'2.0'
@@ -154,6 +155,7 @@ class Payment(BasePaymentRequest):
             }
         )
         if req.status_code == 200:
+            self.params = params
             self.response = self._process_response_xml(req.text)
         else:
             raise PagSeguroApiException(
