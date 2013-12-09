@@ -59,3 +59,15 @@ class Notification(object):
     @property
     def date(self):
         return dateutil.parser.parse(self.transaction['date'])
+
+    @property
+    def reference(self):
+        return self.transaction['reference']
+
+    @property
+    def status(self):
+        return int(self.transaction['status'])
+
+    @property
+    def last_event_date(self):
+        return dateutil.parser.parse(self.transaction['lastEventDate'])

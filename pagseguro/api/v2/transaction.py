@@ -72,12 +72,17 @@ transaction_schema = Schema({
         Required('installmentCount'): Coerce(int),
         Required('itemCount'): Coerce(int),
         Required('items'): {
-            Required('item'): [{
+            Required('item'): Any([{
                 Required('id'): unicode,
                 Required('description'): unicode,
                 Required('amount'): Coerce(float),
                 Required('quantity'): All(Coerce(int), Range(min=1, max=999))
-            }],
+            }], {
+                Required('id'): unicode,
+                Required('description'): unicode,
+                Required('amount'): Coerce(float),
+                Required('quantity'): All(Coerce(int), Range(min=1, max=999))
+            }),
         },
         Required('sender'): {
             Required('email'): All(unicode, Length(max=60)),
