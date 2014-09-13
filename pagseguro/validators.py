@@ -15,6 +15,14 @@ def Email(msg=None):
     return f
 
 
+def NoDoubleSpace(msg=None):
+
+    def f(v):
+        return ' '.join(v.split())
+
+    return f
+
+
 def PhoneArea(msg=None):
 
     def f(v):

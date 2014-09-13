@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from pagseguro.validators import Email, PhoneArea, PhoneNumber, BrState
+from pagseguro.validators import Email, PhoneArea, PhoneNumber, BrState, NoDoubleSpace
 from voluptuous import Schema, Required, All, Length, Range, Optional, Match, \
     Any
 
@@ -13,7 +13,7 @@ item_schema = Schema({
 
 #: .. todo:: Validar born_date e CPF
 client_schema = Schema({
-    'name': unicode,
+    'name': All(NoDoubleSpace(), Length(max=50)),
     'email': All(Email(), Length(max=60)),
     'phone_area_code': All(PhoneArea(), Length(min=2, max=2)),
     'phone_number': All(PhoneNumber(), Length(min=7, max=9)),
